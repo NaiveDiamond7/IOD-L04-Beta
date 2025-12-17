@@ -1,3 +1,2 @@
 # Maven
-target/**
-!target/*.jar
+target/
