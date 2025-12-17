@@ -8,6 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+
+/**
+ * Serwis odpowiedzialny za benchmark algorytmów sortowania.
+ */
 @Service
 public class BenchmarkService {
     private final SortAlgorithmFactory factory;
@@ -16,6 +20,14 @@ public class BenchmarkService {
         this.factory = factory;
     }
 
+
+    /**
+     * Wykonuje benchmark dla wszystkich algorytmów sortowania.
+     *
+     * @param data dane wejściowe
+     * @param <T>  typ danych
+     * @return lista wyników benchmarku
+     */
     public <T extends Comparable<T>> List<BenchmarkResult<T>> benchmark(List<T> data) {
 
         List<BenchmarkResult<T>> results = new ArrayList<>();

@@ -8,6 +8,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+
+/**
+ * Fabryka algorytmów sortowania.
+ *
+ * <p>Odpowiada za:
+ * <ul>
+ *     <li>dynamiczne wykrywanie algorytmów oznaczonych {@code @Component}</li>
+ *     <li>udostępnianie algorytmu na podstawie jego nazwy</li>
+ */
 @Component
 public class SortAlgorithmFactory {
     private final Map<String, SortAlgorithm<?>> algorithms = new HashMap<>();
@@ -18,6 +27,14 @@ public class SortAlgorithmFactory {
         }
     }
 
+
+    /**
+     * Zwraca algorytm sortowania o podanej nazwie.
+     *
+     * @param name nazwa algorytmu (np. "heap", "insertion")
+     * @param <T>  typ danych
+     * @return implementacja algorytmu sortowania
+     */
     @SuppressWarnings("unchecked")
     public <T extends Comparable<T>> SortAlgorithm<T> getAlgorithm(String name) {
         SortAlgorithm<T> algorithm = (SortAlgorithm<T>) algorithms.get(name);
@@ -27,6 +44,10 @@ public class SortAlgorithmFactory {
         return algorithm;
     }
 
+
+    /**
+     * @return lista dostępnych algorytmów sortowania
+     */
     public Set<String> getAvailableAlgorithmNames() {
         return algorithms.keySet();
     }

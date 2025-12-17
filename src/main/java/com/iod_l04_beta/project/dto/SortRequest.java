@@ -1,11 +1,23 @@
 package com.iod_l04_beta.project.dto;
 import java.util.List;
 
+
+/**
+ * Obiekt reprezentujący żądanie sortowania.
+ */
 public class SortRequest {
-    private String type;        // "number" | "text"
-    private String algorithm;   // "bubble"
+    /** Typ danych: "number" lub "text" */
+    private String type;
+
+    /** Nazwa algorytmu sortowania */
+    private String algorithm;
+
+    /** Dane liczbowe do sortowania */
     private List<Integer> numberData;
+
+    /** Dane tekstowe do sortowania */
     private List<String> textData;
+    // gettery
 
     public String getType() {
         return type;

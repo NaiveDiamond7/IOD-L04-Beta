@@ -6,6 +6,11 @@ import com.iod_l04_beta.project.service.RequestDispatcherService;
 import com.iod_l04_beta.project.service.SortService;
 import org.springframework.web.bind.annotation.*;
 
+
+/**
+ * Kontroler REST odpowiedzialny za sortowanie danych
+ * przy użyciu wybranego algorytmu.
+ */
 @RestController
 @RequestMapping("/api/sort")
 public class SortController {
@@ -16,6 +21,14 @@ public class SortController {
         this.dispatcher = dispatcher;
     }
 
+
+
+    /**
+     * Sortuje dane przekazane w żądaniu.
+     *
+     * @param request obiekt zawierający dane i nazwę algorytmu
+     * @return posortowane dane wraz z czasem wykonania
+     */
     @PostMapping
     public Object sort(@RequestBody SortRequest request) {
 

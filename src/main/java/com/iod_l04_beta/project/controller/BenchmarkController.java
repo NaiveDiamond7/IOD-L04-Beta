@@ -9,6 +9,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
+/**
+ * Kontroler REST umożliwiający wykonanie benchmarku
+ * algorytmów sortowania.
+ */
 @RestController
 @RequestMapping("/api/benchmark")
 public class BenchmarkController {
@@ -27,6 +32,12 @@ public class BenchmarkController {
         this.jsonFileService = jsonFileService;
     }
 
+    /**
+     * Uruchamia benchmark algorytmów sortowania.
+     *
+     * @param request dane wejściowe
+     * @return wyniki benchmarku
+     */
     @PostMapping
     public Object benchmark(@RequestBody BenchmarkRequest request) {
         return dispatcher.benchmark(request);

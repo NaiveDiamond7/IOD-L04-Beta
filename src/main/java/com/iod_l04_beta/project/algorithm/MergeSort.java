@@ -4,6 +4,12 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Implementacja algorytmu Merge Sort.
+ *
+ * Stabilny algorytm sortowania o złożoności O(n log n).
+ */
+
 @Component
 public class MergeSort<T extends Comparable<T>> implements SortAlgorithm<T> {
 
@@ -12,6 +18,10 @@ public class MergeSort<T extends Comparable<T>> implements SortAlgorithm<T> {
         return "merge";
     }
 
+
+    /**
+     * Sortuje listę przy użyciu algorytmu Merge Sort.
+     */
     @Override
     public void sort(List<T> data) {
         if (data.size() <= 1) {
@@ -22,6 +32,10 @@ public class MergeSort<T extends Comparable<T>> implements SortAlgorithm<T> {
         data.addAll(sorted);
     }
 
+
+    /**
+     * Rekurencyjnie dzieli listę na mniejsze części.
+     */
     private List<T> mergeSort(List<T> data) {
         if (data.size() <= 1) {
             return data;
@@ -34,6 +48,10 @@ public class MergeSort<T extends Comparable<T>> implements SortAlgorithm<T> {
         return merge(left, right);
     }
 
+
+    /**
+     * Scala dwie posortowane listy w jedną.
+     */
     private List<T> merge(List<T> left, List<T> right) {
         List<T> result = new ArrayList<>();
         int i = 0, j = 0;

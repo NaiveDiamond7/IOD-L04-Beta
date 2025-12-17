@@ -1,9 +1,22 @@
 package com.iod_l04_beta.project.dto;
 import java.util.List;
 
+/**
+ * Obiekt żądania benchmarku algorytmów sortowania.
+ *
+ * <p>Umożliwia wykonanie testów wydajności
+ * dla wszystkich dostępnych algorytmów sortowania.
+ */
+
 public class BenchmarkRequest {
-    private String type; // "number" | "text"
+
+    /** Typ danych: "number" lub "text" */
+    private String type;
+
+    /** Dane liczbowe do testów benchmarku */
     private List<Integer> numberData;
+
+    /** Dane tekstowe do testów benchmarku */
     private List<String> textData;
 
     public String getType() {

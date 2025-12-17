@@ -4,6 +4,11 @@ import java.util.Set;
 import com.iod_l04_beta.project.service.SortAlgorithmFactory;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * Kontroler REST udostępniający informacje
+ * o dostępnych algorytmach sortowania.
+ *
+ */
 @RestController
 @RequestMapping("/api/algorithms")
 public class AlgorithmController {

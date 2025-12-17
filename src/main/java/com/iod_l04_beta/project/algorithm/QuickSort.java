@@ -3,6 +3,13 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+/**
+ * Implementacja algorytmu Quick Sort.
+ *
+ * Średnia złożoność czasowa: O(n log n),
+ * w najgorszym przypadku: O(n²).
+ */
+
 @Component
 public class QuickSort<T extends Comparable<T>> implements SortAlgorithm<T> {
 
@@ -11,11 +18,20 @@ public class QuickSort<T extends Comparable<T>> implements SortAlgorithm<T> {
         return "quick";
     }
 
+
+    /**
+     * Sortuje listę przy użyciu algorytmu Quick Sort.
+     */
+
     @Override
     public void sort(List<T> data) {
         quickSort(data, 0, data.size() - 1);
     }
 
+
+    /**
+     * Rekurencyjna implementacja Quick Sort.
+     */
     private void quickSort(List<T> data, int low, int high) {
         if (low < high) {
             int pivotIndex = partition(data, low, high);
@@ -24,6 +40,10 @@ public class QuickSort<T extends Comparable<T>> implements SortAlgorithm<T> {
         }
     }
 
+
+    /**
+     * Dzieli listę względem elementu pivot.
+     */
     private int partition(List<T> data, int low, int high) {
         T pivot = data.get(high);
         int i = low - 1;
@@ -38,6 +58,10 @@ public class QuickSort<T extends Comparable<T>> implements SortAlgorithm<T> {
         return i + 1;
     }
 
+
+    /**
+     * Zamienia miejscami dwa elementy listy.
+     */
     private void swap(List<T> data, int i, int j) {
         T temp = data.get(i);
         data.set(i, data.get(j));

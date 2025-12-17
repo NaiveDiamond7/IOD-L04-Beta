@@ -6,6 +6,11 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * Serwis odpowiedzialny za delegowanie sortowania
+ * do odpowiedniego algorytmu.
+ */
 @Service
 public class SortService {
     private final SortAlgorithmFactory factory;
@@ -14,6 +19,14 @@ public class SortService {
         this.factory = factory;
     }
 
+
+    /**
+     * Sortuje dane przy użyciu wybranego algorytmu.
+     *
+     * @param data dane wejściowe
+     * @param algorithmName nazwa algorytmu
+     * @return posortowana lista
+     */
     public <T extends Comparable<T>> List<T> sort(
             List<T> data,
             String algorithmName

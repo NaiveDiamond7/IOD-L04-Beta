@@ -3,6 +3,13 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+/**
+ * Implementacja algorytmu sortowania bąbelkowego (Bubble Sort).
+ *
+ * Algorytm o złożoności czasowej O(n²),
+ * przeznaczony głównie do celów edukacyjnych.
+ */
+
 @Component
 public class BubbleSort<T extends Comparable<T>> implements SortAlgorithm<T> {
 
@@ -10,6 +17,10 @@ public class BubbleSort<T extends Comparable<T>> implements SortAlgorithm<T> {
     public String getName() {
         return "bubble";
     }
+
+    /**
+     * Sortuje listę metodą bąbelkową.
+     */
 
     @Override
     public void sort(List<T> data) {
