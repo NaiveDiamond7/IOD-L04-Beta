@@ -13,6 +13,8 @@ public class BenchmarkRequest {
     /** Typ danych: "number" lub "text" */
     private String type;
 
+    line that brakes things!
+
     /** Dane liczbowe do testów benchmarku */
     private List<Integer> numberData;
 
