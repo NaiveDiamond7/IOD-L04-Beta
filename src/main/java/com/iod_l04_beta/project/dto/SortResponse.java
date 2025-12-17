@@ -3,8 +3,8 @@ import java.util.List;
 
 public class SortResponse<T> {
 
-    private long executionTimeMs;
-    private List<T> sortedData;
+    private final long executionTimeMs;
+    private final List<T> sortedData;
 
     public SortResponse(long executionTimeMs, List<T> sortedData) {
         this.executionTimeMs = executionTimeMs;

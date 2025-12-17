@@ -1,6 +1,8 @@
 package com.iod_l04_beta.project.dto;
 import java.util.List;
 
+
+// UNUSED ??
 public class SortRequest {
     private String type;        // "number" | "text"
     private String algorithm;   // "bubble"
