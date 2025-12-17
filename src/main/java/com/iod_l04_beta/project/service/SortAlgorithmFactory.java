@@ -16,6 +16,7 @@ import java.util.Set;
  * <ul>
  *     <li>dynamiczne wykrywanie algorytmów oznaczonych {@code @Component}</li>
  *     <li>udostępnianie algorytmu na podstawie jego nazwy</li>
+ * </ul>
  */
 @Component
 public class SortAlgorithmFactory {
