@@ -3,14 +3,33 @@ package com.iod_l04_beta.project.algorithm;
 import org.springframework.stereotype.Component;
 import java.util.List;
 
+
+/**
+ * Implementacja algorytmu Selection Sort.
+ *
+ *Złożoność czasowa: O(n²)
+ *
+ * @param <T> typ danych porównywalnych
+ */
+
 @Component
 public class SelectionSort<T extends Comparable<T>> implements SortAlgorithm<T> {
 
+
+    /**
+     * @return nazwa algorytmu używana w API ("selection")
+     */
     @Override
     public String getName() {
         return "selection";
     }
 
+
+    /**
+     * Sortuje dane rosnąco przy użyciu algorytmu Selection Sort.
+     *
+     * @param data lista danych do posortowania
+     */
     @Override
     public void sort(List<T> data) {
         int n = data.size();
@@ -28,6 +47,10 @@ public class SelectionSort<T extends Comparable<T>> implements SortAlgorithm<T> 
         }
     }
 
+
+    /**
+     * Zamienia miejscami dwa elementy listy.
+     */
     private void swap(List<T> data, int i, int j) {
         T temp = data.get(i);
         data.set(i, data.get(j));
