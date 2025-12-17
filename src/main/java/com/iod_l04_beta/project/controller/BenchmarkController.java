@@ -52,7 +52,7 @@ public class BenchmarkController {
 
         return formatAsLines(result);
     }
-    // test comment
+
     private String formatAsLines(Object result) {
         try {
             if (result instanceof List<?> list) {
