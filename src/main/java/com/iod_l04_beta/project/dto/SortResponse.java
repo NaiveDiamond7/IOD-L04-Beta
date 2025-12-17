@@ -10,10 +10,10 @@ import java.util.List;
 public class SortResponse<T> {
 
     /** Czas wykonania sortowania w milisekundach */
-    private long executionTimeMs;
+    private final long executionTimeMs;
 
     /** Posortowane dane */
-    private List<T> sortedData;
+    private final List<T> sortedData;
 
     public SortResponse(long executionTimeMs, List<T> sortedData) {
         this.executionTimeMs = executionTimeMs;

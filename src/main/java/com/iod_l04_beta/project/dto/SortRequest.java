@@ -1,7 +1,6 @@
 package com.iod_l04_beta.project.dto;
 import java.util.List;
 
-
 /**
  * Obiekt reprezentujący żądanie sortowania.
  */

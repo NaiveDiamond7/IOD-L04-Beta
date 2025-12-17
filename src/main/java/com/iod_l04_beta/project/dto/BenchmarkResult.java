@@ -8,12 +8,14 @@ import java.util.List;
 public class BenchmarkResult<T> {
 
     /**Wynik benchmarku pojedynczego algorytmu sortowania.*/
-    private String algorithm;
+    private final String algorithm;
 
     /** Czas wykonania algorytmu w milisekundach */
-    private long executionTimeMs;
+    private final long executionTimeMs;
 
-    private List<T> sortedData;
+    private final List<T> sortedData;
+
+
 
     public BenchmarkResult(String algorithm, long executionTimeMs, List<T> sortedData) {
         this.algorithm = algorithm;
