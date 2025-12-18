@@ -20,6 +20,7 @@ public class BubbleSort<T extends Comparable<T>> implements SortAlgorithm<T> {
 
     /**
      * Sortuje listę metodą bąbelkową.
+     * Ala ma kota
      */
 
     @Override
