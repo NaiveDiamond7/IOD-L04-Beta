@@ -24,9 +24,16 @@ public class BubbleSort<T extends Comparable<T>> implements SortAlgorithm<T> {
      */
 
     @Override
-    public void sort(List<T> data) {
+    public void sort(List<T> data, Integer maxIterations) {
         int n = data.size();
         for (int i = 0; i < n - 1; i++) {
+            // sprawdzanie dzialania iteracji
+            System.out.println("Algorytm BubbleSort: Iteracja nr " + (i + 1));
+            // SPRAWDZENIE LIMITU
+            if (maxIterations != null && i >= maxIterations) {
+                System.out.println("Osiągnięto limit iteracji! Przerywam.");
+                return;
+            }
             for (int j = 0; j < n - i - 1; j++) {
                 if (data.get(j).compareTo(data.get(j + 1)) > 0) {
                     T temp = data.get(j);

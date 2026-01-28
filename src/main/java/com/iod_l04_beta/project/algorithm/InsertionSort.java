@@ -32,10 +32,20 @@ public class InsertionSort<T extends Comparable<T>> implements SortAlgorithm<T> 
      * Sortuje dane rosnąco przy użyciu algorytmu Insertion Sort.
      *
      * @param data lista danych do posortowania
+     * @param maxIterations ilość iteracji algorytmu
      */
     @Override
-    public void sort(List<T> data) {
+    public void sort(List<T> data, Integer maxIterations) {
+
+        int currentIteration = 0;
+
         for (int i = 1; i < data.size(); i++) {
+
+            if (maxIterations != null && currentIteration >= maxIterations) {
+                return;
+            }
+            currentIteration++;
+
             T key = data.get(i);
             int j = i - 1;
 

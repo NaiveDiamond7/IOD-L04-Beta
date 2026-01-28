@@ -5,6 +5,7 @@ import com.iod_l04_beta.project.dto.BenchmarkResult;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -28,10 +29,11 @@ public class BenchmarkService {
      * @param <T>  typ danych
      * @return lista wyników benchmarku
      */
-    public <T extends Comparable<T>> List<BenchmarkResult<T>> benchmark(List<T> data) {
+    public <T extends Comparable<T>> List<BenchmarkResult<T>> benchmark(List<T> data, String direction) {
 
         List<BenchmarkResult<T>> results = new ArrayList<>();
         Map<String, SortAlgorithm<?>> algorithms = factory.getAllAlgorithms();
+        boolean isDesc = "DESC".equalsIgnoreCase(direction);
 
         for (Map.Entry<String, SortAlgorithm<?>> entry : algorithms.entrySet()) {
 
@@ -42,6 +44,11 @@ public class BenchmarkService {
 
             long start = System.nanoTime();
             algorithm.sort(copy);
+
+            if (isDesc) {
+                Collections.reverse(copy);
+            }
+
             long end = System.nanoTime();
 
             results.add(

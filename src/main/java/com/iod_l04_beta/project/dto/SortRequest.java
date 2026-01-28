@@ -11,13 +11,19 @@ public class SortRequest {
     /** Nazwa algorytmu sortowania */
     private String algorithm;
 
+    /** Porządek sortowania: rosnący lub malejący. Domyślnie rosnący. */
+    private String direction;
+
+    /** Ilość iteracji: wprowadzana przez użytkownika. */
+    private Integer iterations;
+
     /** Dane liczbowe do sortowania */
     private List<Integer> numberData;
 
     /** Dane tekstowe do sortowania */
     private List<String> textData;
-    // gettery
 
+    // gettery
     public String getType() {
         return type;
     }
@@ -32,5 +38,13 @@ public class SortRequest {
 
     public List<String> getTextData() {
         return textData;
+    }
+
+    public String getDirection() {
+        return direction != null ? direction : "ASC";
+    }
+
+    public Integer getIterations() {
+        return iterations;
     }
 }

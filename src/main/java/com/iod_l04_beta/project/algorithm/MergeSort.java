@@ -3,6 +3,7 @@ package com.iod_l04_beta.project.algorithm;
 import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Implementacja algorytmu Merge Sort.
@@ -23,11 +24,9 @@ public class MergeSort<T extends Comparable<T>> implements SortAlgorithm<T> {
      * Sortuje listę przy użyciu algorytmu Merge Sort.
      */
     @Override
-    public void sort(List<T> data) {
-        if (data.size() <= 1) {
-            return;
-        }
-        List<T> sorted = mergeSort(data);
+    public void sort(List<T> data, Integer maxIterations) {
+        if (data.size() <= 1) return;
+        List<T> sorted = mergeSort(data, new AtomicInteger(0), maxIterations);
         data.clear();
         data.addAll(sorted);
     }
@@ -36,14 +35,21 @@ public class MergeSort<T extends Comparable<T>> implements SortAlgorithm<T> {
     /**
      * Rekurencyjnie dzieli listę na mniejsze części.
      */
-    private List<T> mergeSort(List<T> data) {
+    private List<T> mergeSort(List<T> data, AtomicInteger counter, Integer maxIterations) {
+
+        if (maxIterations != null && counter.get() >= maxIterations) {
+            return data;
+        }
+
         if (data.size() <= 1) {
             return data;
         }
 
+        counter.incrementAndGet();
+
         int mid = data.size() / 2;
-        List<T> left = mergeSort(new ArrayList<>(data.subList(0, mid)));
-        List<T> right = mergeSort(new ArrayList<>(data.subList(mid, data.size())));
+        List<T> left = mergeSort(new ArrayList<>(data.subList(0, mid)), counter, maxIterations);
+        List<T> right = mergeSort(new ArrayList<>(data.subList(mid, data.size())), counter, maxIterations);
 
         return merge(left, right);
     }

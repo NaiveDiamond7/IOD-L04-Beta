@@ -38,6 +38,7 @@ public class SortController {
 
         if (response instanceof SortResponse<?> sr) {
             return new SortResponse<>(
+                    sr.getAlgorithm(),
                     (end - start) / 1_000_000,
                     sr.getSortedData()
             );

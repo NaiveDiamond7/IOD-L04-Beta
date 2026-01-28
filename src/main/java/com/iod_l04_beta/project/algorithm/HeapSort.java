@@ -29,16 +29,24 @@ public class HeapSort<T extends Comparable<T>> implements SortAlgorithm<T> {
      * @param data lista danych do posortowania
      */
     @Override
-    public void sort(List<T> data) {
+    public void sort(List<T> data, Integer maxIterations) {
         int n = data.size();
 
-        // Budowanie kopca maksymalnego
+        // Budowanie kopca
         for (int i = n / 2 - 1; i >= 0; i--) {
             heapify(data, n, i);
         }
 
+        int currentIteration = 0;
+
         // Wyciąganie elementów z kopca
         for (int i = n - 1; i > 0; i--) {
+
+            if (maxIterations != null && currentIteration >= maxIterations) {
+                return;
+            }
+            currentIteration++;
+
             swap(data, 0, i);
             heapify(data, i, 0);
         }

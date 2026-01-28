@@ -4,6 +4,7 @@ import com.iod_l04_beta.project.dto.BenchmarkRequest;
 import com.iod_l04_beta.project.dto.SortRequest;
 import com.iod_l04_beta.project.dto.SortResponse;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 
 /**
@@ -43,29 +44,44 @@ public class RequestDispatcherService {
      * <p>Na podstawie typu danych wywoływana jest
      * odpowiednia metoda serwisu sortującego.
      *
-     * @param request obiekt zawierający dane do sortowania
+     * @param request obiekt zawierający dane do sortowania i jego kierunek
      * @return {@link SortResponse} zawierający wynik sortowania
      * @throws IllegalArgumentException gdy podano nieobsługiwany typ danych
      */
     public Object sort(SortRequest request) {
 
         if ("number".equalsIgnoreCase(request.getType())) {
+            List<Integer> data = request.getNumberData();
+
+            // tutaj wyznaczamy algorytm - auto albo nie
+            String chosenAlgorithm = resolveAlgorithm(request.getAlgorithm(), data.size());
+
             var result = sortService.sort(
-                    request.getNumberData(),
-                    request.getAlgorithm()
+                    data,
+                    chosenAlgorithm,
+                    request.getDirection(),
+                    request.getIterations()
             );
             return new SortResponse<>(
+                    chosenAlgorithm, // zwracamy nazwe wybranego algorytmu
                     0,
                     result
             );
         }
 
         if ("text".equalsIgnoreCase(request.getType())) {
+            List<String> data = request.getTextData();
+
+            String chosenAlgorithm = resolveAlgorithm(request.getAlgorithm(), data.size());
+
             var result = sortService.sort(
-                    request.getTextData(),
-                    request.getAlgorithm()
+                    data,
+                    chosenAlgorithm,
+                    request.getDirection(),
+                    request.getIterations()
             );
             return new SortResponse<>(
+                    chosenAlgorithm,
                     0,
                     result
             );
@@ -73,6 +89,19 @@ public class RequestDispatcherService {
         throw new IllegalArgumentException("Unsupported data type: " + request.getType());
     }
 
+    private String resolveAlgorithm(String requestedAlgo, int dataSize) {
+        if (!"auto".equalsIgnoreCase(requestedAlgo)) {
+            return requestedAlgo;
+        }
+
+        // Heurystyka: Dla małych danych Insertion Sort jest szybszy.
+        // Dla dużych Quick Sort jest optymalny.
+        if (dataSize < 64) {
+            return "insertion";
+        } else {
+            return "quick";
+        }
+    }
 
     /**
      * Obsługuje żądanie benchmarku algorytmów sortowania.
@@ -87,11 +116,11 @@ public class RequestDispatcherService {
     public Object benchmark(BenchmarkRequest request) {
 
         if ("number".equalsIgnoreCase(request.getType())) {
-            return benchmarkService.benchmark(request.getNumberData());
+            return benchmarkService.benchmark(request.getNumberData(), request.getDirection());
         }
 
         if ("text".equalsIgnoreCase(request.getType())) {
-            return benchmarkService.benchmark(request.getTextData());
+            return benchmarkService.benchmark(request.getTextData(), request.getDirection());
         }
         throw new IllegalArgumentException("Unsupported data type: " + request.getType());
     }

@@ -29,20 +29,24 @@ public class SelectionSort<T extends Comparable<T>> implements SortAlgorithm<T> 
      * Sortuje dane rosnąco przy użyciu algorytmu Selection Sort.
      *
      * @param data lista danych do posortowania
+     * @param maxIterations ilość iteracji algorytmu
      */
     @Override
-    public void sort(List<T> data) {
+    public void sort(List<T> data, Integer maxIterations) {
         int n = data.size();
 
         for (int i = 0; i < n - 1; i++) {
-            int minIndex = i;
 
+            if (maxIterations != null && i >= maxIterations) {
+                return;
+            }
+
+            int minIndex = i;
             for (int j = i + 1; j < n; j++) {
                 if (data.get(j).compareTo(data.get(minIndex)) < 0) {
                     minIndex = j;
                 }
             }
-
             swap(data, i, minIndex);
         }
     }

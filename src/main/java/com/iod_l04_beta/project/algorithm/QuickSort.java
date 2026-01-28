@@ -2,6 +2,7 @@ package com.iod_l04_beta.project.algorithm;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Implementacja algorytmu Quick Sort.
@@ -24,19 +25,28 @@ public class QuickSort<T extends Comparable<T>> implements SortAlgorithm<T> {
      */
 
     @Override
-    public void sort(List<T> data) {
-        quickSort(data, 0, data.size() - 1);
+    public void sort(List<T> data, Integer maxIterations) {
+        // AtomicInteger jako mutowalny licznik przekazywany przez referencję
+        quickSort(data, 0, data.size() - 1, new AtomicInteger(0), maxIterations);
     }
 
 
     /**
      * Rekurencyjna implementacja Quick Sort.
      */
-    private void quickSort(List<T> data, int low, int high) {
+    private void quickSort(List<T> data, int low, int high, AtomicInteger counter, Integer maxIterations) {
+
+        if (maxIterations != null && counter.get() >= maxIterations) {
+            return;
+        }
+
         if (low < high) {
+            counter.incrementAndGet();
+
             int pivotIndex = partition(data, low, high);
-            quickSort(data, low, pivotIndex - 1);
-            quickSort(data, pivotIndex + 1, high);
+
+            quickSort(data, low, pivotIndex - 1, counter, maxIterations);
+            quickSort(data, pivotIndex + 1, high, counter, maxIterations);
         }
     }
 

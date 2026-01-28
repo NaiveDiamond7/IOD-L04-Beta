@@ -23,5 +23,14 @@ public interface SortAlgorithm<T extends Comparable<T>> {
      *
      * @param data lista danych do posortowania
      */
-    void sort(List<T> data);
+    default void sort(List<T> data) {
+        sort(data, null);
+    };
+
+    /**
+     * Sortuje listę z opcjonalnym limitem iteracji/kroków.
+     * @param data dane do posortowania
+     * @param maxIterations maksymalna liczba kroków (null = brak limitu)
+     */
+    void sort(List<T> data, Integer maxIterations);
 }
